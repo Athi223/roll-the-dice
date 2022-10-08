@@ -67,7 +67,10 @@ export default function Snap({ username }) {
 						<div
 							className="text-center border border-2 border-primary rounded pt-2 bg-primary"
 							style={{ height: "85vh", "--bs-bg-opacity": ".25" }}>
-							<img src={`https://picsum.photos/seed/${seed}/${width / 3}/${height - 250}`} />
+							<img
+								src={`https://picsum.photos/seed/${seed}/${width / 3}/${height - 250}`}
+								className="border border-2 border-primary rounded"
+							/>
 							<form onSubmit={handleComment} className="d-flex mx-auto my-2 w-75">
 								<input
 									type="text"
