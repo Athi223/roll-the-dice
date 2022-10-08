@@ -20,9 +20,33 @@ export default function Snap({ username }) {
 	const [comment, setComment] = useState("")
 	const [width, setWidth] = useState(0)
 	const [height, setHeight] = useState(0)
+	const [toast, setToast] = useState({ title: "", body: "" })
 
 	useEffect(() => {
 		const channel = pusher.subscribe("presence-comments")
+
+		import("bootstrap/dist/js/bootstrap").then(bootstrap => {
+			const toast = window.document.querySelector("#liveToast")
+			new bootstrap.Toast(toast)
+
+			channel.bind("pusher:member_added", member => {
+				setToast({
+					title: "🟢 Member Added",
+					body: `${member.info.username} has joined the discussion!`,
+				})
+				const toast = bootstrap.Toast.getInstance(window.document.querySelector("#liveToast"))
+				toast.show()
+			})
+
+			channel.bind("pusher:member_removed", member => {
+				setToast({
+					title: "🔴 Member Removed",
+					body: `${member.info.username} has left the discussion!`,
+				})
+				const toast = bootstrap.Toast.getInstance(window.document.querySelector("#liveToast"))
+				toast.show()
+			})
+		})
 
 		channel.bind("update-comments", data => {
 			const { username, comment } = data
@@ -94,6 +118,15 @@ export default function Snap({ username }) {
 							</div>
 						))}
 					</div>
+				</div>
+			</div>
+			<div className="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+					<div className="toast-header">
+						<strong className="me-auto">{toast.title}</strong>
+						<button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div className="toast-body">{toast.body}</div>
 				</div>
 			</div>
 		</>
