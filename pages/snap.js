@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 export default function Snap({ username }) {
-	const pusher = new Pusher(process.env.NEXT_PUBLIC_key, {
-		cluster: process.env.NEXT_PUBLIC_cluster,
+	const pusher = new Pusher("293a61203fa0038d6486", {
+		cluster: "ap2",
 		authEndpoint: "/api/auth",
 		auth: {
 			params: {
