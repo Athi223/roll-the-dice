@@ -5,7 +5,7 @@ export default function Home({ setUsername, handleAuthenticate }) {
 		<div className="d-flex flex-column" style={{ height: "100vh" }}>
 			<nav className="navbar navbar-dark bg-danger">
 				<div className="container-fluid">
-					<span className="navbar-brand mb-0 h1">Snap Board</span>
+					<h1 className="navbar-brand mb-0">Snap Board</h1>
 				</div>
 			</nav>
 			<div className="flex-grow-1 d-flex justify-content-center align-items-center">
