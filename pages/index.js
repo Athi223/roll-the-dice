@@ -1,23 +1,17 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+import "bootstrap/dist/css/bootstrap.min.css"
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
-
-      <Footer />
-    </div>
-  )
+export default function Home({ setUsername, handleAuthenticate }) {
+	return (
+		<div>
+			<form onSubmit={handleAuthenticate}>
+				<label htmlFor="username" className="form-label">
+					Username
+				</label>
+				<input type="text" className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
+				<button type="submit" className="btn btn-primary" onClick={handleAuthenticate}>
+					Submit
+				</button>
+			</form>
+		</div>
+	)
 }
