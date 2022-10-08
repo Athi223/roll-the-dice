@@ -56,7 +56,7 @@ export default function Snap({ username }) {
 
 	return (
 		<>
-			<nav className="navbar navbar-dark bg-primary">
+			<nav className="navbar navbar-dark bg-danger">
 				<div className="container-fluid">
 					<span className="navbar-brand mb-0 h1">Snap Board</span>
 				</div>
@@ -64,9 +64,11 @@ export default function Snap({ username }) {
 			<div className="container mt-3">
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<div className="text-center border border-2 border-dark rounded pt-2">
+						<div
+							className="text-center border border-2 border-primary rounded pt-2 bg-primary"
+							style={{ height: "85vh", "--bs-bg-opacity": ".25" }}>
 							<img src={`https://picsum.photos/seed/${seed}/${width / 3}/${height - 250}`} />
-							<form onSubmit={handleComment} className="d-flex mx-auto mt-3 mb-1 w-75">
+							<form onSubmit={handleComment} className="d-flex mx-auto my-2 w-75">
 								<input
 									type="text"
 									className="form-control flex-grow-1 me-2"
@@ -80,10 +82,10 @@ export default function Snap({ username }) {
 						</div>
 					</div>
 					<div
-						className="col-12 col-md-6 overflow-auto border border-2 border-dark rounded p-2"
-						style={{ height: "85vh" }}>
+						className="col-12 col-md-6 overflow-auto border border-2 border-primary bg-primary rounded p-2"
+						style={{ height: "85vh", "--bs-bg-opacity": ".25" }}>
 						{comments.map(({ username, comment }, index) => (
-							<div key={index} className="border rounded p-3 mb-2">
+							<div key={index} className="card border-dark p-3 mb-2">
 								<h5 className="text-danger">{username}</h5>
 								<p className="text-secondary">{comment}</p>
 							</div>
